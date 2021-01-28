@@ -1,0 +1,98 @@
+﻿<Window x:Class="wpf_bh.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpf_bh"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="450" Foreground="{x:Null}" WindowStyle="None" Background="#FF0F0F0F" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+    <Grid>
+
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="450" Background="#FF16131D" MouseDown="Border_MouseDown" Margin="0,0,-0.4,0">
+            <Image Source="horse.png" Margin="9.2,6.2,404.8,9"/>
+
+        </Border>
+        <Button x:Name="close" Content="&#xE8BB;" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe MDL2 Assets" Margin="418,5,4.6,417.6" Click="Close_Click"/>
+        <Button x:Name="min" Content="_" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe UI" Margin="386,5,36.6,420.6" FontSize="16" Click="Min_Click"/>
+        <TextBox Visibility="Visible" x:Name="FOV" HorizontalAlignment="Left" Height="22" Margin="28,406,0,0" TextWrapping="Wrap" Text="90" VerticalAlignment="Top" Width="44" FontSize="14" Background="{x:Null}" Foreground="#FFC3C3C3" BorderBrush="#FF4F4F4F" TextAlignment="Center" LostKeyboardFocus="UpdateFOV" KeyDown="checkIfEnter"/>
+        <TextBox Visibility="Visible" x:Name="Sens" HorizontalAlignment="Left" Height="22" Margin="101,406,0,0" TextWrapping="Wrap" Text="1.0" VerticalAlignment="Top" Width="44" FontSize="14" Background="{x:Null}" Foreground="#FFC3C3C3" BorderBrush="#FF4F4F4F" TextAlignment="Center" LostKeyboardFocus="UpdateSensitivity" KeyDown="checkIfEnter" RenderTransformOrigin="1.927,0.336"/>
+        <Label Content=" FOV:" HorizontalAlignment="Center" Margin="28,375,377.6,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="44"/>
+        <Label Content=" Sens:" HorizontalAlignment="Center" Margin="101,375,304.6,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="44"/>
+        <RadioButton x:Name="kernelMove" Content="Kernel Mouse" HorizontalAlignment="Left" Margin="176,392,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Foreground="#FFC3C3C3" Width="102" RenderTransformOrigin="0.562,0.271"/>
+        <RadioButton x:Name="kernelMove_Copy" Content="Regular Mouse" HorizontalAlignment="Left" Margin="176,413,0,0" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Foreground="#FFC3C3C3" Width="102" RenderTransformOrigin="0.562,0.271"/>
+        <CheckBox Content="Watermark" HorizontalAlignment="Left" Margin="300,413,0,0" VerticalAlignment="Top" Foreground="#FFC3C3C3"/>
+        <CheckBox Content="Overlay" HorizontalAlignment="Left" Margin="300,392,0,0" VerticalAlignment="Top" Foreground="#FFC3C3C3"/>
+        <Label Content="Keybind Manager" HorizontalAlignment="Center" Margin="10,42,287.6,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="152"/>
+
+
+        <Border CornerRadius="11,11,11,11" BorderBrush="#FF4E4E4E" BorderThickness="1" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="87" Margin="16,68,0,0">
+            <Button x:Name="newKeybindBtn_Copy" Content="New Keybind" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe UI" Click="openNewKeybind" FontSize="11"/>
+        </Border>
+        <Border CornerRadius="11,11,11,11" BorderBrush="#FF4E4E4E" BorderThickness="1" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="87" Margin="112,68,0,0">
+            <Button x:Name="editKeybindsBtn" Content="Edit Keybinds" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe UI" Click="openEditKeybinds" FontSize="11"/>
+        </Border>
+
+        <Grid Visibility="Hidden" x:Name="NewKeybind" HorizontalAlignment="Left" Height="280" VerticalAlignment="Top" Width="430" Margin="10,95,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="152*"/>
+                <RowDefinition Height="123*"/>
+            </Grid.RowDefinitions>
+            <ComboBox HorizontalAlignment="Left" Margin="19,37,0,0" VerticalAlignment="Top" Width="123" Background="{x:Null}">
+                <Label x:Name="weaponToggle" Content="Toggle"/>
+                <Label x:Name="blank"/>
+                <Label x:Name="weaponAR" Content="Assault Rifle (AK-47)"/>
+                <Label x:Name="weaponLR" Content="LR-300"/>
+                <Label x:Name="weaponMP5" Content="MP5"/>
+                <Label x:Name="weaponM249" Content="M249"/>
+                <Label x:Name="weaponThompson" Content="Thompson"/>
+                <Label x:Name="weaponCustom" Content="Custom SMG"/>
+                <Label x:Name="weaponSemiauto" Content="Semi-Auto Rifle"/>
+                <Label />
+                <Label x:Name="attachSingle" Content="Simple Sight"/>
+                <Label x:Name="attachx8" Content="x8 Scope"/>
+                <Label x:Name="attachx16" Content="x16 Scope"/>
+                <Label x:Name="attachHolo" Content="Holo Sight"/>
+            </ComboBox>
+            <Label Content="Weapon" HorizontalAlignment="Center" Margin="52,6,320,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="58"/>
+            <Label Content="Scope Attachments" HorizontalAlignment="Center" Margin="274,6,41,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="115"/>
+
+            <ComboBox HorizontalAlignment="Left" Margin="269,37,0,0" VerticalAlignment="Top" Width="120">
+                <Label Content="Simple sight"/>
+                <Label Content="x8 Scope"/>
+                <Label Content="x16 Scope"/>
+                <Label Content="Holo sight"/>
+            </ComboBox>
+
+            <CheckBox Content="Hipfire" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,82,0,0" Foreground="#FFC3C3C3" Width="86"/>
+            <CheckBox Content="Crosshair" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,102,0,0" Foreground="#FFC3C3C3" Width="86"/>
+            <CheckBox Content="Zoom on aim" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,122,0,0" Foreground="#FFC3C3C3" Width="106"/>
+            <CheckBox Content="Auto detect" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,142,0,0" Foreground="#FFC3C3C3" Width="106" Grid.RowSpan="2"/>
+            <Label Content="Random X" HorizontalAlignment="Center" Margin="57,14.267,306,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="67" Grid.Row="1"/>
+            <Slider x:Name="randXSlider" HorizontalAlignment="Left" Margin="10,45.267,0,0" VerticalAlignment="Top" Width="164" ValueChanged="RandXSlider_ValueChanged" Maximum="100" SmallChange="1" LargeChange="10" Grid.Row="1"/>
+            <Slider x:Name="randYSlider" HorizontalAlignment="Left" Margin="247,45.267,0,0" VerticalAlignment="Top" Width="164" ValueChanged="RandYSlider_ValueChanged" SmallChange="1" Maximum="100" LargeChange="10" Grid.Row="1"/>
+            <Label x:Name="randXLabel" Content="0%" HorizontalAlignment="Center" Margin="69,61.267,322,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="39" Grid.Row="1"/>
+            <Label x:Name="randYLabel" Content="0%" HorizontalAlignment="Center" Margin="309,61.267,82,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="39" Grid.Row="1"/>
+            <Label Content="Random Y" HorizontalAlignment="Center" Margin="294,14.267,69,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="67" Grid.Row="1"/>
+
+            <Border CornerRadius="11,11,11,11" BorderBrush="#FF4E4E4E" BorderThickness="1" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="120" Margin="269,139,0,0" Grid.RowSpan="2">
+                <Button x:Name="keyBoundTo" Content="Key" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe UI" Click="listenForKey" FontSize="11"/>
+            </Border>
+            <Border CornerRadius="11,11,11,11" BorderBrush="#FF4E4E4E" BorderThickness="1" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="121" Margin="149,91.267,0,0" Grid.Row="1">
+                <Button x:Name="keyBoundTo1" Content="Save Keybind" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontFamily="Segoe UI" Click="saveKeybind" FontSize="11"/>
+            </Border>
+            <Label Content="Barrel Attachments" HorizontalAlignment="Center" Margin="274,69,41,0" VerticalAlignment="Top" Foreground="#FFC3C3C3" FontFamily="Segoe UI Semibold" Width="115"/>
+            <ComboBox HorizontalAlignment="Left" Margin="269,100,0,0" VerticalAlignment="Top" Width="120">
+                <Label Content="Muzzle brake"/>
+                <Label Content="Muzzle boost"/>
+                <Label Content="Silencer"/>
+            </ComboBox>
+            <Border BorderThickness="2" HorizontalAlignment="Left" Height="1" VerticalAlignment="Top" Width="430" Margin="0,123,0,0" Grid.Row="1" BorderBrush="#FFC3C3C3"/>
+
+
+
+        </Grid>
+
+
+        <!-- END OF NEW KEYBIND WINDOW -->
+    </Grid>
+</Window>
